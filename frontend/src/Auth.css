@@ -1,0 +1,32 @@
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    min-height: 100vh;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+  
+  .welcome {
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+  
+  .session-expired {
+    color: red;
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+  
+  .logout-btn {
+    background-color: #dc3545;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .logged-in-info {
+    margin-top: 20px;
+  }
+  

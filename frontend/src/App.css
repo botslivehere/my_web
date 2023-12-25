@@ -1,0 +1,62 @@
+
+.page-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  .page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .date-picker-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .task-list {
+    list-style-type: none;
+    padding: 0;
+  }
+ 
+  .task-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .task-checkbox {
+    margin-right: 10px;
+  }
+  
+  .task-text {
+    margin-right: 10px;
+    text-decoration: none;
+  }
+  
+  .remove-btn {
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .new-task-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .new-task-input {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .add-task-btn {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
