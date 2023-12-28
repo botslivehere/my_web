@@ -1,6 +1,7 @@
 const express = require('express');
 const resolve = require('path').resolve
 const { check_auth,create_user } = require('../functions/auth.js');
+const bcrypt = require('bcrypt');
 
 const router = express.Router();
 
@@ -11,13 +12,16 @@ router.post('/auth', async (req, res) => {
         if (
             !login || !password ||
             typeof login !== 'string' || typeof password !== 'string' ||
-            login.length < 8 || password.length < 8 ||
+            login.length < 8 || password.length < 8 || 
+            login.length > 32 || password.length > 32 ||
             !/^[a-zA-Z0-9]+$/.test(login) || !/^[a-zA-Z0-9]+$/.test(password)
         ) {
             throw new Error('Invalid input format');
         }
+        const fixedSalt = '$2a$10$abcdefghijklmnopqrstuu';
+        const hashedPassword = await bcrypt.hash(password, fixedSalt);
 
-        let id = await check_auth(login, password);
+        let id = await check_auth(login, hashedPassword);
 
         if (!id) {
             res.status(400).send({ status: 'Error', message: 'Invalid credentials' });
@@ -64,26 +68,30 @@ router.post('/register', async (req, res) => {
             !login || !password ||
             typeof login !== 'string' || typeof password !== 'string' ||
             login.length < 8 || password.length < 8 ||
+            login.length > 32 || password.length > 32 ||
             !/^[a-zA-Z0-9]+$/.test(login) || !/^[a-zA-Z0-9]+$/.test(password)
         ) {
             throw new Error('Invalid input format');
         }
 
-        let id = await check_auth(login, password);
+        const fixedSalt = '$2a$10$abcdefghijklmnopqrstuu';
+        const hashedPassword = await bcrypt.hash(password, fixedSalt);
+
+        let id = await check_auth(login, hashedPassword);
 
         if (id) {
             res.status(400).send({ status: 'Error', message: 'User already exists' });
             return;
         }
 
-        let userData = await create_user(login, password);
+        let userData = await create_user(login, hashedPassword);
 
         if (!userData) {
             res.status(500).send({ status: 'Error', message: 'Failed to register user' });
             return;
         }
 
-        id = await check_auth(login, password);
+        id = await check_auth(login, hashedPassword);
 
         if (!id) {
             res.status(400).send({ status: 'Error', message: 'Invalid credentials' });

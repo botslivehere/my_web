@@ -10,11 +10,11 @@ const Authories = sequelize.define('Authories', {
         autoIncrement: true,
     },
     password: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(60),
         allowNull: false
     },
     login: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(32),
         allowNull: false
     }
 },

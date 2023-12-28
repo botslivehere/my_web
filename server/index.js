@@ -26,7 +26,7 @@ const Allowed_origin='http://'+host+':3000';
 console.log(Allowed_origin);
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({
     origin: Allowed_origin || 'http://localhost:3000',
     credentials: true,
