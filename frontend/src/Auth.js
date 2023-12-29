@@ -133,7 +133,7 @@ function Auth() {
         const apiUrl = Url+':3001/logout'; 
     
         fetch(apiUrl, {
-          method: 'GET',
+          method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
           },

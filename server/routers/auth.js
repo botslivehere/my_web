@@ -46,7 +46,7 @@ router.post('/auth', async (req, res) => {
 });
 
 
-router.get('/logout', (req, res) => {
+router.delete('/logout', (req, res) => {
     console.log(req.session.id);
     req.session.destroy(function (err) {
         if (err) {
